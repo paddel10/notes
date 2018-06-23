@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="16"
+   width="16"
+   version="1"
+   id="svg3812"
+   sodipodi:docname="folder-empty.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata3818">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3816" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="704"
+     id="namedview3814"
+     showgrid="false"
+     inkscape:zoom="31.9375"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3812" />
+  <path
+     d="M1.457 1.997c-.25 0-.46.21-.46.46v11.08c0 .26.202.46.46.46h13.08c.258 0 .46-.2.46-.46V4.46c0-.25-.21-.463-.46-.463h-6.54l-2-2z"
+     fill-rule="evenodd"
+     id="path3810" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.84413958"
+     d="m 2.4220964,2.9363347 c -0.2142587,0 -0.4237777,0.1169727 -0.4231396,0.324831 l 0.028903,9.4140373 c 6.638e-4,0.216175 0.1731212,0.382462 0.3942362,0.382462 h 11.210022 c 0.221116,0 0.394236,-0.166286 0.394236,-0.382462 V 5.128242 c 0,-0.2078594 -0.179977,-0.3849557 -0.394236,-0.3849557 L 7.5405756,4.8009163 5.742203,2.9363343 Z"
+     id="path3810-3"
+     sodipodi:nodetypes="ssssssssccs" />
+</svg>

@@ -67,7 +67,7 @@ class Note extends Entity {
         $note->setModified($file->getMTime());
         $note->setTitle(pathinfo($file->getName(),PATHINFO_FILENAME)); // remove extension
         $subdir = substr(dirname($file->getPath()), strlen($notesFolder->getPath())+1);
-        $note->setCategory($subdir ? $subdir : null);
+        $note->setCategory($subdir ? $subdir : '');
         if(is_array($tags) && in_array(\OC\Tags::TAG_FAVORITE, $tags)) {
             $note->setFavorite(true);
             //unset($tags[array_search(\OC\Tags::TAG_FAVORITE, $tags)]);

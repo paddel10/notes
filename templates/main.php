@@ -33,7 +33,7 @@ style('notes', [
     </script>
 
     <div id="app-navigation" ng-controller="NotesController">
-        <ul>
+        <ul class="with-icon">
             <li class="note-search">
                 <span class="nav-entry icon-search">
                     <input type="text" ng-model="search" />
@@ -46,8 +46,49 @@ style('notes', [
                     <?php p($l->t('New note')); ?> 
                 </button>
             </div>
+
+
+		<li data-id="recent" class="nav-recent" ng-class="{ active: filterCategory==null && filterFavorite==false }">
+                        <a
+                                ng-click="setFilter(null, false)"
+                                class="nav-icon-recent svg">
+                                Recent                  </a>
+                </li>
+                <li data-id="favorites" class="nav-favorites" ng-class="{ active: filterCategory==null && filterFavorite==true }">
+                        <a
+                                ng-click="setFilter(null, true)"
+                                class="nav-icon-favorites svg">
+                                Favorites                       </a>
+                </li>
+
+<li class="collapsible" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }">
+                <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || 'Uncategorized' : 'Categories'}}</a>
+<ul>
+                <li data-id="files" class="nav-files" ng-class="{ active: filterCategory=='' && filterFavorite==false }">
+                        <a
+                                ng-click="setFilter('', false)"
+                                class="nav-icon-uncategorized svg">
+                                Uncategorized                   </a>
+                </li>
+
+             <!-- category list -->
+	     <li
+                  ng-repeat="category in sortedCategories = (categories| orderBy:['name'])"
+                  data-id="files"
+		  class="nav-files"
+                  ng-class="{ active: filterCategory==category.name && filterFavorite==false }"
+                  >
+                        <a
+                                ng-click="setFilter(category.name, false)"
+                                class="nav-icon-files svg">
+				{{ category.name }}                  </a>
+                </li>
+</ul>
+</li>
+<li class="app-navigation-separator"></li>
+
             <!-- notes list -->
-            <li ng-repeat="note in filteredNotes = (notes| and:search | orderBy:['-favorite','-modified'])"
+            <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:['-favorite','-modified'])"
                 ng-class="{ active: note.id == route.noteId,'has-error': note.error }">
                 <a href="#/notes/{{ note.id }}">
                     {{ note.title | noteTitle }}
@@ -65,13 +106,49 @@ style('notes', [
                         data-placement="bottom"
                         ng-click="toggleFavorite(note.id)"
                         ng-class="{'icon-starred': note.favorite}"></button>
-                </span>
+		</span>
+<!--<br>{{ note.category }}-->
             </li>
             <li ng-hide="filteredNotes.length">
                 <span class="nav-entry">
                     <?php p($l->t('No notes found')); ?>
                 </span>
             </li>
+
+
+<!--
+
+<li class="app-navigation-separator"></li>
+<li class="app-navigation-separator"></li>
+<li class="app-navigation-separator"></li>
+
+<li class="note-item"><a href="#">Current Tasks</a></li>
+<li class="note-item"><a href="#">Open Questions</a></li>
+<li class="note-item"><a href="#">Project Overview</a></li>
+
+
+<li class="app-navigation-separator"></li>
+
+<li class="nav-files"><a href="#" class="nav-icon-files svg">Sub-Project A</a></li>
+
+<li class="note-item"><a href="#">Note 1</a></li>
+<li class="note-item"><a href="#">Note 2</a></li>
+<li class="note-item"><a href="#">Note 3</a></li>
+<li class="note-item"><a href="#">Note 4</a></li>
+
+<li class="app-navigation-separator"></li>
+
+<li class="nav-files"><a href="#" class="nav-icon-files svg">Sub-Project B</a></li>
+
+<li class="note-item"><a href="#">Note 1</a></li>
+<li class="note-item"><a href="#">Note 2</a></li>
+<li class="note-item"><a href="#">Note 3</a></li>
+<li class="note-item"><a href="#">Note 4</a></li>
+
+<li class="app-navigation-separator"></li>
+
+-->
+
 
         </ul>
     </div>

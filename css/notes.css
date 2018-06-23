@@ -284,3 +284,19 @@
         padding-left: 90px;
     }
 }
+
+
+/* icons for sidebar */
+.nav-icon-uncategorized {
+        background-image: url('../img/folder-empty.svg?v=1');
+}
+.nav-icon-files {
+        background-image: url('../img/folder.svg?v=1');
+}
+.nav-icon-recent {
+        background-image: url('../img/recent.svg?v=1');
+}
+.nav-icon-favorites {
+        background-image: url('../img/star.svg?v=1');
+}
+

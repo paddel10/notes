@@ -12,12 +12,22 @@ app.controller('NotesController', function($routeParams, $scope, $location,
 
     $scope.route = $routeParams;
     $scope.notes = NotesModel.getAll();
+    $scope.categories = {};
+
+    $scope.folderSelectorOpen = false;
+    $scope.filterCategory = null;
+    $scope.filterFavorite = false;
 
     var notesResource = Restangular.all('notes');
 
     // initial request for getting all notes
     notesResource.getList().then(function (notes) {
         NotesModel.addAll(notes);
+    });
+
+    // initial request for getting all categories
+    notesResource.customGET('categories').then(function (categories) {
+        $scope.categories = categories;
     });
 
     $scope.create = function () {
@@ -43,6 +53,25 @@ app.controller('NotesController', function($routeParams, $scope, $location,
         });
     };
 
+    $scope.toggleFolderSelector = function () {
+        $scope.folderSelectorOpen = !$scope.folderSelectorOpen;
+    };
+
+    $scope.setFilter = function (category, favorite) {
+        $scope.filterCategory = category;
+        $scope.filterFavorite = favorite;
+        $scope.folderSelectorOpen = false;
+    };
+
+    $scope.noteFilter = function (note) {
+        if($scope.filterFavorite && !note.favorite) {
+            return false;
+        }
+        if($scope.filterCategory!==null) {
+            return note.category===$scope.filterCategory || (note.category!==null && note.category.startsWith($scope.filterCategory+'/'));
+        }
+        return true;
+    };
 
     $window.onbeforeunload = function() {
         var notes = NotesModel.getAll();
