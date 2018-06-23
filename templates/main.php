@@ -48,40 +48,40 @@ style('notes', [
             </div>
 
 
-		<li data-id="recent" class="nav-recent" ng-class="{ active: filterCategory==null && filterFavorite==false }">
+                <li data-id="recent" class="nav-recent" ng-class="{ active: filterCategory==null && filterFavorite==false }">
                         <a
-                                ng-click="setFilter(null, false)"
-                                class="nav-icon-recent svg">
-                                Recent                  </a>
+                            ng-click="setFilter(null, false)"
+                            class="nav-icon-recent svg"
+                        ><?php p($l->t('Recent')); ?></a>
                 </li>
                 <li data-id="favorites" class="nav-favorites" ng-class="{ active: filterCategory==null && filterFavorite==true }">
                         <a
-                                ng-click="setFilter(null, true)"
-                                class="nav-icon-favorites svg">
-                                Favorites                       </a>
+                            ng-click="setFilter(null, true)"
+                            class="nav-icon-favorites svg"
+                        ><?php p($l->t('Favorites')); ?></a>
                 </li>
 
 <li class="collapsible" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }">
-                <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || 'Uncategorized' : 'Categories'}}</a>
+                <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || strUncategorized : strCategories}}</a>
 <ul>
                 <li data-id="files" class="nav-files" ng-class="{ active: filterCategory=='' && filterFavorite==false }">
                         <a
-                                ng-click="setFilter('', false)"
-                                class="nav-icon-uncategorized svg">
-                                Uncategorized                   </a>
+                            ng-click="setFilter('', false)"
+                            class="nav-icon-uncategorized svg"
+                        ><?php p($l->t('Uncategorized')); ?></a>
                 </li>
 
              <!-- category list -->
-	     <li
+             <li
                   ng-repeat="category in sortedCategories = (categories| orderBy:['name'])"
                   data-id="files"
-		  class="nav-files"
+                  class="nav-files"
                   ng-class="{ active: filterCategory==category.name && filterFavorite==false }"
                   >
                         <a
-                                ng-click="setFilter(category.name, false)"
-                                class="nav-icon-files svg">
-				{{ category.name }}                  </a>
+                            ng-click="setFilter(category.name, false)"
+                            class="nav-icon-files svg"
+                        >{{ category.name }}</a>
                 </li>
 </ul>
 </li>
@@ -99,14 +99,16 @@ style('notes', [
                         title="<?php p($l->t('Delete note')); ?>"
                         notes-tooltip
                         data-placement="bottom"
-                        ng-click="delete(note.id)"></button>
+                        ng-click="delete(note.id)"
+                    ></button>
                     <button class="svg action icon-star"
                         title="<?php p($l->t('Favorite')); ?>"
                         notes-tooltip
                         data-placement="bottom"
                         ng-click="toggleFavorite(note.id)"
-                        ng-class="{'icon-starred': note.favorite}"></button>
-		</span>
+                        ng-class="{'icon-starred': note.favorite}"
+                    ></button>
+                </span>
 <!--<br>{{ note.category }}-->
             </li>
             <li ng-hide="filteredNotes.length">

@@ -18,6 +18,9 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     $scope.filterCategory = null;
     $scope.filterFavorite = false;
 
+    $scope.strCategories = t('notes', 'Categories');
+    $scope.strUncategorized = t('notes', 'Uncategorized');
+
     var notesResource = Restangular.all('notes');
 
     // initial request for getting all notes
