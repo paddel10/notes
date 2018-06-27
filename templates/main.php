@@ -64,34 +64,33 @@ style('notes', [
 -->
 
 <li class="collapsible app-navigation-noclose" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }">
-                <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || strUncategorized : strCategories}}</a>
+                <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || '<?php p($l->t('Uncategorized')); ?>' : '<?php p($l->t('Categories')); ?>'}}</a>
 <ul>
-                <li data-id="files" class="nav-files" ng-class="{ active: filterCategory=='' && filterFavorite==false }">
-                        <a
-                            ng-click="setFilter('', false)"
-                            class="nav-icon-uncategorized svg"
-                        ><?php p($l->t('Uncategorized')); ?></a>
-                </li>
-
              <!-- category list -->
              <li
-                  ng-repeat="category in sortedCategories = (categories| orderBy:['name'])"
-                  data-id="files"
+                  ng-repeat="category in (getCategories(notes) | orderBy:['name'])"
                   class="nav-files"
                   ng-class="{ active: filterCategory==category.name && filterFavorite==false }"
                   >
                         <a
                             ng-click="setFilter(category.name, false)"
-                            class="nav-icon-files svg"
-                        >{{ category.name }}</a>
+			    class="svg"
+			    ng-class="{ 'nav-icon-uncategorized': !category.name, 'nav-icon-files': category.name }"
+				    >{{ category.name || '<?php p($l->t('Uncategorized')); ?>' }}</a>
+                       <div class="app-navigation-entry-utils">
+                           <ul>
+                               <li class="app-navigation-entry-utils-counter">{{category.count}}</li>
+                           </ul>
+                      </div>
                 </li>
 </ul>
 </li>
 <li class="app-navigation-separator"></li>
 
             <!-- notes list -->
-            <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:filterOrder)"
-                ng-class="{ active: note.id == route.noteId,'has-error': note.error }">
+	    <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:filterOrder)"
+		ng-class="{ active: note.id == route.noteId,'has-error': note.error }"
+                class="note-item">
                 <a href="#/notes/{{ note.id }}">
                     {{ note.title | noteTitle }}
                     <span ng-if="note.unsaved">*</span>

@@ -12,7 +12,7 @@ app.controller('NotesController', function($routeParams, $scope, $location,
 
     $scope.route = $routeParams;
     $scope.notes = NotesModel.getAll();
-    $scope.categories = {};
+    $scope.categories = {}; // deprecated!
 
     $scope.folderSelectorOpen = false;
     $scope.filterCategory = null;
@@ -22,9 +22,6 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     $scope.orderAlpha = ['-favorite','title'];
     $scope.filterOrder = $scope.orderRecent;
 
-    $scope.strCategories = t('notes', 'Categories');
-    $scope.strUncategorized = t('notes', 'Uncategorized');
-
     var notesResource = Restangular.all('notes');
 
     // initial request for getting all notes
@@ -32,7 +29,7 @@ app.controller('NotesController', function($routeParams, $scope, $location,
         NotesModel.addAll(notes);
     });
 
-    // initial request for getting all categories
+    // initial request for getting all categories // deprecated!
     notesResource.customGET('categories').then(function (categories) {
         $scope.categories = categories;
     });
@@ -80,6 +77,23 @@ app.controller('NotesController', function($routeParams, $scope, $location,
         }
         return true;
     };
+
+    $scope.getCategories = _.memoize(function (notes) {
+		var categories = {};
+		for(var i=0; i<notes.length; i++) {
+			var cat = notes[i].category;
+			if(categories[cat]===undefined) {
+				categories[cat] = 1;
+			} else {
+				categories[cat]++;
+			}
+		}
+		var result = [];
+		for(var category in categories) {
+			result.push({ name: category, count: categories[category]});
+		}
+		return result;
+	});
 
     $window.onbeforeunload = function() {
         var notes = NotesModel.getAll();

@@ -16,7 +16,7 @@
 	background-position: 10px center;
 }
 
-#app-navigation .active a {
+#app-navigation .note-item.active a {
 	padding-right: 70px;
 }
 
