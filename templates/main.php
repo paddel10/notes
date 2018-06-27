@@ -90,7 +90,7 @@ style('notes', [
 <li class="app-navigation-separator"></li>
 
             <!-- notes list -->
-            <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:['-favorite','-modified'])"
+            <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:filterOrder)"
                 ng-class="{ active: note.id == route.noteId,'has-error': note.error }">
                 <a href="#/notes/{{ note.id }}">
                     {{ note.title | noteTitle }}

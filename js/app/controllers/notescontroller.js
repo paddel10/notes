@@ -18,6 +18,10 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     $scope.filterCategory = null;
     $scope.filterFavorite = false;
 
+    $scope.orderRecent = ['-favorite','-modified'];
+    $scope.orderAlpha = ['-favorite','title'];
+    $scope.filterOrder = $scope.orderRecent;
+
     $scope.strCategories = t('notes', 'Categories');
     $scope.strUncategorized = t('notes', 'Uncategorized');
 
@@ -61,6 +65,7 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     };
 
     $scope.setFilter = function (category, favorite) {
+        $scope.filterOrder = category===null ? $scope.orderRecent : $scope.orderAlpha;
         $scope.filterCategory = category;
         $scope.filterFavorite = favorite;
         $scope.folderSelectorOpen = false;
