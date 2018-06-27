@@ -54,12 +54,14 @@ style('notes', [
                             class="nav-icon-recent svg"
                         ><?php p($l->t('Recent')); ?></a>
 		</li>
+<!--
                 <li data-id="favorites" class="nav-favorites app-navigation-noclose" ng-class="{ active: filterCategory==null && filterFavorite==true }">
                         <a
                             ng-click="setFilter(null, true)"
                             class="nav-icon-favorites svg"
                         ><?php p($l->t('Favorites')); ?></a>
                 </li>
+-->
 
 <li class="collapsible app-navigation-noclose" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }">
                 <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || strUncategorized : strCategories}}</a>
