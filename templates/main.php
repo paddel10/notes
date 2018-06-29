@@ -48,7 +48,7 @@ style('notes', [
             </div>
 
 
-                <li data-id="recent" class="nav-recent app-navigation-noclose" ng-class="{ active: filterCategory==null && filterFavorite==false }">
+                <li data-id="recent" class="nav-recent app-navigation-noclose" ng-class="{ active: filterCategory==null && filterFavorite==false }" ng-show="notes.length>1">
                         <a
                             ng-click="setFilter(null, false)"
                             class="nav-icon-recent svg"
@@ -63,7 +63,7 @@ style('notes', [
                 </li>
 -->
 
-<li class="collapsible app-navigation-noclose" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }">
+<li class="collapsible app-navigation-noclose" ng-class="{ open: folderSelectorOpen, active: filterCategory!=null }" ng-show="notes.length>1">
                 <a class="nav-icon-files svg" ng-click="toggleFolderSelector()">{{!folderSelectorOpen && filterCategory!=null ? filterCategory || '<?php p($l->t('Uncategorized')); ?>' : '<?php p($l->t('Categories')); ?>'}}</a>
 <ul>
              <!-- category list -->
