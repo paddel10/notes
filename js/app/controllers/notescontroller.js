@@ -73,38 +73,38 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     };
 
     $scope.nthIndexOf = function(str, pattern, n) {
-	        var i = -1;
-	        while (n-- && i++ < str.length) {
-			        i = str.indexOf(pattern, i);
-			        if (i < 0) {
-					break;
-				}
-			    }
-	        return i;
+        var i = -1;
+        while (n-- && i++ < str.length) {
+            i = str.indexOf(pattern, i);
+            if (i < 0) {
+                break;
+            }
+        }
+        return i;
     };
 
-	$scope.getCategories = _.memoize(function (notes, maxLevel) {
-		var categories = {};
-		for(var i=0; i<notes.length; i++) {
-			var cat = notes[i].category;
-			if(maxLevel>0) {
-				var index = $scope.nthIndexOf(cat, '/', maxLevel);
-				if(index>0) {
-					cat = cat.substring(0, index);
-				}
-			}
-			if(categories[cat]===undefined) {
-				categories[cat] = 1;
-			} else {
-				categories[cat]++;
-			}
-		}
-		var result = [];
-		for(var category in categories) {
-			result.push({ name: category, count: categories[category]});
-		}
-		return result;
-	});
+    $scope.getCategories = _.memoize(function (notes, maxLevel) {
+        var categories = {};
+        for(var i=0; i<notes.length; i++) {
+            var cat = notes[i].category;
+            if(maxLevel>0) {
+                var index = $scope.nthIndexOf(cat, '/', maxLevel);
+                if(index>0) {
+                    cat = cat.substring(0, index);
+                }
+            }
+            if(categories[cat]===undefined) {
+                categories[cat] = 1;
+            } else {
+                categories[cat]++;
+            }
+        }
+        var result = [];
+        for(var category in categories) {
+            result.push({ name: category, count: categories[category]});
+        }
+        return result;
+    });
 
     $window.onbeforeunload = function() {
         var notes = NotesModel.getAll();

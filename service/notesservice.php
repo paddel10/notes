@@ -45,6 +45,7 @@ class NotesService {
         $this->appName = $appName;
     }
 
+
     /**
      * @param string $userId
      * @return array with all notes in the current directory
