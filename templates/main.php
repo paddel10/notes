@@ -68,7 +68,7 @@ style('notes', [
 <ul>
              <!-- category list -->
              <li
-                  ng-repeat="category in (getCategories(notes) | orderBy:['name'])"
+                  ng-repeat="category in (getCategories(notes, 1) | orderBy:['name'])"
                   class="nav-files"
                   ng-class="{ active: filterCategory==category.name && filterFavorite==false }"
                   >
