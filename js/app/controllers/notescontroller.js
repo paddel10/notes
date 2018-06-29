@@ -12,7 +12,6 @@ app.controller('NotesController', function($routeParams, $scope, $location,
 
     $scope.route = $routeParams;
     $scope.notes = NotesModel.getAll();
-    $scope.categories = {}; // deprecated!
 
     $scope.folderSelectorOpen = false;
     $scope.filterCategory = null;
@@ -27,11 +26,6 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     // initial request for getting all notes
     notesResource.getList().then(function (notes) {
         NotesModel.addAll(notes);
-    });
-
-    // initial request for getting all categories // deprecated!
-    notesResource.customGET('categories').then(function (categories) {
-        $scope.categories = categories;
     });
 
     $scope.create = function () {

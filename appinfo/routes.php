@@ -15,7 +15,6 @@ return ['routes' => [
 
     // notes
     ['name' => 'notes#index', 'url' => '/notes', 'verb' => 'GET'],
-    ['name' => 'notes#categories', 'url' => '/notes/categories', 'verb' => 'GET'],
     ['name' => 'notes#get', 'url' => '/notes/{id}', 'verb' => 'GET'],
     ['name' => 'notes#create', 'url' => '/notes', 'verb' => 'POST'],
     ['name' => 'notes#update', 'url' => '/notes/{id}', 'verb' => 'PUT'],

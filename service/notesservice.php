@@ -45,12 +45,6 @@ class NotesService {
         $this->appName = $appName;
     }
 
-    public function getCategories($userId) {
-        $notesFolder = $this->getFolderForUser($userId);
-        $categories = $this->gatherSubfolders($notesFolder);
-        return $categories;
-    }
-
     /**
      * @param string $userId
      * @return array with all notes in the current directory
@@ -353,35 +347,6 @@ class NotesService {
             return $this->generateFileName($folder, $newTitle, $extension, $id);
         }
     }
-
-	/**
-	 * gather sub-directories in given directory and all subdirectories
-	 * @param Folder $folder
-	 * @return array
-	 */
-	private function gatherSubfolders($folder) {
-		$folders = [];
-		$nodes = $folder->getDirectoryListing();
-		foreach($nodes as $node) {
-			if($node->getType() === FileInfo::TYPE_FOLDER) {
-				$notes = $this->gatherNoteFiles($node);
-				$folders[] = ['name'=>$node->getName(), 'notes'=>count($notes)];
-			}
-		}
-/*
-		foreach($nodes as $node) {
-			$numNotes = 0;
-			if($node->getType() === FileInfo::TYPE_FOLDER) {
-				$folders = array_merge($folders, $this->gatherSubfolders($node));
-			}
-        		if($this->isNote($node)) {
-				$numNotes++;
-			}
-		}
-		$folders[] = ['name'=>..., 'notes'=>$numNotes];
- */
-		return $folders;
-	}
 
 	/**
 	 * gather note files in given directory and all subdirectories

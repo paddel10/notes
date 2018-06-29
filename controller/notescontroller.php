@@ -132,14 +132,4 @@ class NotesController extends Controller {
         });
     }
 
-
-    /**
-     * @NoAdminRequired
-     *
-     * @return DataResponse
-     */
-    public function categories() {
-        return $this->notesService->getCategories($this->userId);
-    }
-
 }
