@@ -53,7 +53,7 @@ style('notes', [
                             ng-click="setFilter(null, false)"
                             class="nav-icon-recent svg"
                         ><?php p($l->t('Recent')); ?></a>
-		</li>
+                </li>
 <!--
                 <li data-id="favorites" class="nav-favorites app-navigation-noclose" ng-class="{ active: filterCategory==null && filterFavorite==true }">
                         <a
@@ -71,12 +71,13 @@ style('notes', [
                   ng-repeat="category in (getCategories(notes, 1) | orderBy:['name'])"
                   class="nav-files"
                   ng-class="{ active: filterCategory==category.name && filterFavorite==false }"
+                  title="{{ category.name || '<?php p($l->t('Uncategorized')); ?>' }}"
                   >
-                        <a
-                            ng-click="setFilter(category.name, false)"
-			    class="svg"
-			    ng-class="{ 'nav-icon-uncategorized': !category.name, 'nav-icon-files': category.name }"
-				    >{{ category.name || '<?php p($l->t('Uncategorized')); ?>' }}</a>
+                       <a
+                           ng-click="setFilter(category.name, false)"
+                           class="svg"
+                           ng-class="{ 'nav-icon-uncategorized': !category.name, 'nav-icon-files': category.name }"
+                       >{{ category.name || '<?php p($l->t('Uncategorized')); ?>' }}</a>
                        <div class="app-navigation-entry-utils">
                            <ul>
                                <li class="app-navigation-entry-utils-counter">{{category.count}}</li>
@@ -88,10 +89,10 @@ style('notes', [
 <li class="app-navigation-separator"></li>
 
             <!-- notes list -->
-	    <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:filterOrder)"
-		ng-class="{ active: note.id == route.noteId,'has-error': note.error }"
+            <li ng-repeat="note in filteredNotes = (notes | filter:noteFilter | and:search | orderBy:filterOrder)"
+                ng-class="{ active: note.id == route.noteId,'has-error': note.error }"
                 class="note-item">
-                <a href="#/notes/{{ note.id }}">
+                <a href="#/notes/{{ note.id }}" title="{{ note.title | noteTitle }}">
                     {{ note.title | noteTitle }}
                     <span ng-if="note.unsaved">*</span>
                 </a>
