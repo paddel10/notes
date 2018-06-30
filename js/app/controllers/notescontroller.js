@@ -29,7 +29,7 @@ app.controller('NotesController', function($routeParams, $scope, $location,
     });
 
     $scope.create = function () {
-        notesResource.post().then(function (note) {
+        notesResource.post({category: $scope.filterCategory}).then(function (note) {
             NotesModel.add(note);
             $location.path('/notes/' + note.id);
         });
